@@ -9,7 +9,7 @@ module V1
 
       if @user.valid_password?(params[:password])
         sign_in :user, @user
-        render json: @user, serializer: SessionSerializer, root: nil
+        render json: @user, serializer: SessionSerializer, root: false
       else
         invalid_login_attempt
       end
@@ -23,13 +23,6 @@ module V1
     end
 
     # can login like this:
-
-#     curl localhost:3000/v1/login --data "username=some@email.com&password=password"
-# {
-#   "token_type": "Bearer",
-#   "user_id": 1,
-#   "access_token": "1:VNBFMX_ZyjVh9mqLPD9f"
-# }
 
 #     curl localhost:3000/v1/login --data "username=some@email.com&password=password"
 
